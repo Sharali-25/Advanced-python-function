@@ -1,14 +1,26 @@
-# Add two lists using map and lambda
-numbers1 = [1,2,3]
-numbers2 = [4,5,6]
-result = map(lambda x,y: x+y, numbers1, numbers2)
-print("Addition of two list")
-print(list(result))
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-# using map
-nums = [1,2,3,4,5]
-def sq(n):
-    return n*n
-square = list(map(sq, nums))
-print("Square of numbers in list")
-print(square)
+sns.set(style="ticks")
+weather = pd.read_csv("Student.csv")
+print(weather.head(10))
+print(weather.info())
+
+sns.barplot(x=weather["humidity"],y=weather["temperature"])
+plt.show()
+
+sns.displot(weather["humidity"],kde=False, rug=True)
+plt.show()
+
+sns.jointplot(x=weather["humidity"],y=weather["temperature"], kind="hist")
+plt.show()
+
+sns.pairplot(weather[["humidity","temperature","air_pollution_index"]])
+plt.show()
+
+sns.stripplot(x=weather["weather_type"],y=weather["temperature"],jitter=True)
+plt.show()
+
+sns.swarmplot(x=weather["humidity"],y=weather["temperature"])
+plt.show()
